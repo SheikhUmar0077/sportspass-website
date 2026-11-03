@@ -18,8 +18,22 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 20px;
     }
     .logo { font-size: 26px; font-weight: 800; color: #ed6473; }
+    .header-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+    .header-links a:not(.button) {
+      color: #514846;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .header-links a:not(.button):hover { color: #ed6473; }
     .hero {
       min-height: 75vh;
       padding: 100px 8%;
@@ -47,12 +61,24 @@
       font-weight: bold;
     }
     footer { padding: 30px 8%; color: #776d6b; }
+    @media (max-width: 620px) {
+      header { align-items: flex-start; flex-direction: column; padding: 20px 6%; }
+      .header-links { width: 100%; justify-content: space-between; gap: 10px; }
+      .header-links a:not(.button) { font-size: 11px; }
+      .header-links .button { padding: 11px 15px; font-size: 12px; }
+      .hero { min-height: 65vh; padding: 70px 6%; }
+      footer { padding: 24px 6%; }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="logo">SPORTSPASS</div>
-    <a class="button" href="mailto:hello@sportspass.pk">Contact Us</a>
+    <nav class="header-links" aria-label="Business account links">
+      <a href="https://partner.sportspass.pk/">Partner sign in</a>
+      <a href="https://corporate.sportspass.pk/">Corporate sign in</a>
+      <a class="button" href="mailto:hello@sportspass.pk">Contact Us</a>
+    </nav>
   </header>
 
   <main>
