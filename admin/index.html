@@ -1,75 +1,142 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sportspass | Your Fitness, Your Way</title>
-  <meta name="description" content="Discover gyms and fitness experiences with Sportspass.">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff9f7;
-      color: #292323;
-    }
-    header {
-      padding: 24px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo { font-size: 26px; font-weight: 800; color: #ed6473; }
-    .hero {
-      min-height: 75vh;
-      padding: 100px 8%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: linear-gradient(135deg, #fff0ed, #ffe1e0);
-    }
-    h1 { font-size: clamp(42px, 7vw, 76px); max-width: 750px; }
-    .hero p {
-      font-size: 19px;
-      line-height: 1.7;
-      margin: 24px 0;
-      max-width: 540px;
-      color: #655b59;
-    }
-    .button {
-      display: inline-block;
-      width: fit-content;
-      padding: 15px 28px;
-      background: #ed6473;
-      color: white;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-    }
-    footer { padding: 30px 8%; color: #776d6b; }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">SPORTSPASS</div>
-    <a class="button" href="mailto:hello@sportspass.pk">Contact Us</a>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Your Fitness.<br>Your admin.</h1>
-      <p>
-        Discover gyms, explore fitness experiences,
-        and make every workout count with Sportspass.
-      </p>
-      <a class="button" href="mailto:hello@sportspass.pk">
-        Get in Touch
-      </a>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <meta
+      name="description"
+      content="Secure Sportspass platform administration."
+    >
+    <title>Super Admin | Sportspass</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <section class="auth-shell" id="auth-screen">
+      <form class="auth-card" id="login-form">
+        <a class="brand brand-auth" href="/" aria-label="Sportspass home">
+          <span class="brand-mark">S</span>
+          <span>SPORTSPASS</span>
+        </a>
+        <p class="eyebrow">PLATFORM ADMINISTRATION</p>
+        <h1>Sign in</h1>
+        <p class="subtle">
+          This area is restricted to provisioned Sportspass administrators.
+        </p>
+        <label for="email">Administrator email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="username"
+          required
+        >
+        <label for="password">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+        <p class="form-message" id="login-message" role="alert"></p>
+        <button class="button button-primary button-wide" type="submit">
+          Sign in securely
+        </button>
+      </form>
     </section>
-  </main>
 
-  <footer>
-    © 2026 Sportspass. All rights reserved.
-  </footer>
-</body>
+    <div class="dashboard" id="dashboard" hidden>
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" data-home>
+          <span class="brand-mark">S</span>
+          <span>SPORTSPASS</span>
+        </a>
+        <p class="sidebar-label">WORKSPACE</p>
+        <nav class="navigation" aria-label="Admin sections">
+          <button class="nav-link active" data-section="overview" type="button">
+            <span class="nav-icon" aria-hidden="true">▦</span> Overview
+          </button>
+          <button class="nav-link" data-section="partners" type="button">
+            <span class="nav-icon" aria-hidden="true">◇</span> Partners
+          </button>
+          <button class="nav-link" data-section="companies" type="button">
+            <span class="nav-icon" aria-hidden="true">▤</span> Companies
+          </button>
+          <button class="nav-link" data-section="partnerInquiries" type="button">
+            <span class="nav-icon" aria-hidden="true">↗</span> Partner requests
+            <span class="nav-count" id="partner-request-count" hidden>0</span>
+          </button>
+          <button class="nav-link" data-section="corporateInquiries" type="button">
+            <span class="nav-icon" aria-hidden="true">◎</span> Corporate requests
+            <span class="nav-count" id="corporate-request-count" hidden>0</span>
+          </button>
+          <button class="nav-link" data-section="customers" type="button">
+            <span class="nav-icon" aria-hidden="true">♙</span> Customers
+          </button>
+          <button class="nav-link" data-section="memberships" type="button">
+            <span class="nav-icon" aria-hidden="true">▣</span> Memberships
+          </button>
+          <button class="nav-link" data-section="checkIns" type="button">
+            <span class="nav-icon" aria-hidden="true">✓</span> Check-ins
+          </button>
+          <button class="nav-link" data-section="admins" type="button">
+            <span class="nav-icon" aria-hidden="true">♧</span> Administrators
+          </button>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="signed-in-as">
+            <span class="avatar" aria-hidden="true">A</span>
+            <span class="signed-in-copy">
+              <strong>Super Admin</strong>
+              <span id="admin-email"></span>
+            </span>
+          </div>
+          <button class="button button-quiet button-wide" id="sign-out" type="button">
+            Sign out
+          </button>
+        </div>
+      </aside>
+
+      <div class="main-shell">
+        <header class="topbar">
+          <button
+            class="icon-button mobile-menu"
+            id="mobile-menu"
+            type="button"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+          >☰</button>
+          <div>
+            <p class="eyebrow">SPORTSPASS CONTROL CENTER</p>
+            <h1 id="page-title">Overview</h1>
+          </div>
+          <button class="button button-secondary" id="refresh" type="button">
+            Refresh data
+          </button>
+        </header>
+        <main class="content" id="content" tabindex="-1">
+          <p class="subtle">Loading dashboard…</p>
+        </main>
+      </div>
+    </div>
+
+    <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">RECORD DETAILS</p>
+          <h2 id="dialog-title">Details</h2>
+        </div>
+        <button class="icon-button" id="close-dialog" type="button" aria-label="Close">
+          ×
+        </button>
+      </div>
+      <div id="dialog-body"></div>
+    </dialog>
+
+    <noscript>
+      <p class="noscript-message">Enable JavaScript to use the admin dashboard.</p>
+    </noscript>
+  </body>
 </html>
